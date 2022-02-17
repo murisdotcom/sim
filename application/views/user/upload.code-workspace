@@ -1,0 +1,31 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\..\\..\\phpmvc"
+		},
+		{
+			"path": "..\\..\\..\\..\\Belajarphp"
+		},
+		{
+			"path": "..\\..\\..\\..\\CI-APP"
+		},
+		{
+			"path": "..\\..\\.."
+		},
+		{
+			"path": "..\\..\\..\\..\\repository"
+		},
+		{
+			"path": "..\\..\\..\\..\\weblibrary"
+		},
+		{
+			"path": "..\\..\\..\\..\\wpu-login"
+		},
+		{
+			"path": "..\\..\\..\\..\\cipengadaan"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "siap-login"
+	}
+}
