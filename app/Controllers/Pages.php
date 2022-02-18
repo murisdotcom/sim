@@ -12,7 +12,7 @@ class Pages extends BaseController
       'title' => 'Home | Website MS GLOW'
     ];
 
-    echo view('pages/home', $data);
+    return view('pages/home', $data);
   }
 
   public function about()
@@ -21,7 +21,27 @@ class Pages extends BaseController
       'title' => 'About Me | Website MS GLOW'
     ];
 
-    echo view('pages/about', $data);
+    return view('pages/about', $data);
+  }
+
+  public function contact()
+  {
+    $data = [
+      'title' => 'Contact Us | Website MS GLOW',
+      'alamat' => [
+        [
+          'tipe' => 'rumah',
+          'alamat' => 'Jl. Cipare no 32.B',
+          'kota' => 'Serang'
+        ],
+        [
+          'tipe' => 'Kantor',
+          'alamat' => 'Jl. Lumba no 11.C',
+          'kota' => 'Pandeglang'
+        ]
+      ]
+    ];
+    return view('pages/contact', $data);
   }
   
 }
