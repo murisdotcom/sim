@@ -7,6 +7,8 @@
       <h1 class="mt-2">Daftar Produk MS GLOW</h1>
       <table class="table">
         <thead>
+          <?php $i=1; ?>
+          <?php foreach($produk as $p) : ?>
           <tr>
             <th scope="col">No</th>
             <th scope="col">Gambar</th>
@@ -16,13 +18,14 @@
         </thead>
         <tbody>
           <tr>
-            <th scope="row">1</th>
-            <td><img src="/img/fw.jpeg" alt="" class="sampul"></td>
-            <td>Facial Wash</td>
+            <th scope="row"><?= $i++; ?></th>
+            <td><img src="/img/<?= $p['gambar']; ?>" alt="" class="sampul"></td>
+            <td><?= $p['nama_produk']; ?></td>
             <td>
               <a href="" class="btn btn-success">Detail</a>
             </td>
           </tr>
+          <?php endforeach; ?>
         </tbody>
       </table>
     </div>
