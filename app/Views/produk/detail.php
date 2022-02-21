@@ -13,9 +13,8 @@
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title"><?= $produk['nama_produk']; ?></h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              <p class="card-text" style="text-align:justify"><?= $produk['desc_produk']; ?></p>
+              <p class="card-text"><small class="text-muted">BPOM: <?= $produk['kode_produk']; ?></small></p>
 
               <a href="" class="btn btn-warning">Edit</a>
               <a href="" class="btn btn-danger">Delete</a>
