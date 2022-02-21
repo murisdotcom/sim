@@ -9,7 +9,7 @@ class Pages extends BaseController
   {
 
     $data = [
-      'title' => 'Home | Website MS GLOW'
+      'title' => 'Home | MS GLOW'
     ];
 
     return view('pages/home', $data);
@@ -18,7 +18,7 @@ class Pages extends BaseController
   public function about()
   {
         $data = [
-      'title' => 'About Me | Website MS GLOW'
+      'title' => 'About Me | MS GLOW'
     ];
 
     return view('pages/about', $data);
@@ -27,7 +27,7 @@ class Pages extends BaseController
   public function contact()
   {
     $data = [
-      'title' => 'Contact Us | Website MS GLOW',
+      'title' => 'Contact Us | MS GLOW',
       'alamat' => [
         [
           'tipe' => 'rumah',

@@ -15,13 +15,22 @@ class Produk extends BaseController
 
   public function index()
   {
-    $produk = $this->produkModel->findAll();
+    // $produk = $this->produkModel->findAll();
 
     $data = [
       'title' => 'Daftar Produk Ms Glow',
-      'produk' => $produk
+      'produk' => $this->produkModel->getProduk()
     ];
 
     return view('produk/index', $data);
+  }
+
+  public function detail($slug)
+  {
+    $data = [
+      'title' => 'Detail Produk | MS GLOW',
+      'produk' => $this->produkModel->getProduk($slug)
+    ];
+    return view('produk/detail', $data);
   }
 }
