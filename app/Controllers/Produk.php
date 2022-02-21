@@ -31,6 +31,12 @@ class Produk extends BaseController
       'title' => 'Detail Produk | MS GLOW',
       'produk' => $this->produkModel->getProduk($slug)
     ];
+
+    // jika komik tidak ada di tabel
+    if(empty($data['produk'])){
+      throw new \CodeIgniter\Exceptions\PageNotFoundException('Nama Produk '. $slug .' tidak ditemukan.');
+    }
+
     return view('produk/detail', $data);
   }
 
@@ -41,5 +47,21 @@ class Produk extends BaseController
     ];
 
     return view('produk/create', $data);
+  }
+
+  public function save()
+  {
+    $slug = url_title($this->request->getVar('nama_produk'), '-', true);
+    $this->produkModel->save([
+      'nama_produk' => $this->request->getVar('nama_produk'),
+      'slug' => $slug,
+      'desc_produk' => $this->request->getVar('nama_produk'),
+      'kode_produk' => $this->request->getVar('nama_produk'),
+      'gambar' => $this->request->getVar('nama_produk')
+    ]);
+
+    session()->setFlashdata('pesan', 'Data berhasil ditambahkan.');
+
+    return redirect()->to('/produk');
   }
 }

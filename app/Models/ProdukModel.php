@@ -8,6 +8,8 @@ class ProdukModel extends Model
 {
     protected $table = 'produk';
     protected $useTimestamps = true;
+    protected $allowedFields = ['nama_produk', 'slug', 'desc_produk', 'kode_produk', 'gambar'];
+
 
     public function getProduk($slug=false)
     {
@@ -16,4 +18,6 @@ class ProdukModel extends Model
         }
         return $this->where(['slug'=>$slug])->first();
     }
+
+
 }
