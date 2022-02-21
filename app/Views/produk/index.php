@@ -5,6 +5,7 @@
   <div class="row">
     <div class="col">
       <h1 class="mt-2">Daftar Produk MS GLOW</h1>
+      <a href="/produk/create" class="btn btn-primary mb-3">Tambah Produk</a>
       <table class="table">
         <thead>
           <tr>
