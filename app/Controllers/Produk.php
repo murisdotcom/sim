@@ -33,4 +33,13 @@ class Produk extends BaseController
     ];
     return view('produk/detail', $data);
   }
+
+  public function create()
+  {
+    $data = [
+      'title' => 'Form Tambah Data | MS GLOW'
+    ];
+    
+    return view('produk/create', $data);
+  }
 }
