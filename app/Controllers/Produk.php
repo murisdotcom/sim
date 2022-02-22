@@ -60,8 +60,8 @@ class Produk extends BaseController
       'nama_produk' => [
         'rules' => 'required|is_unique[produk.nama_produk]',
         'errors' => [
-          'required' => 'Nama produk harus diisi!',
-          'is_unique' => 'Nama produk sudah terdaftar!'
+          'required' => '{field} harus diisi!',
+          'is_unique' => '{field} sudah terdaftar!'
         ]
         ],
 
