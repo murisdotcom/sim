@@ -43,7 +43,7 @@ class Produk extends BaseController
   public function create()
   {
 
-    session();
+    // session();
 
     $data = [
       'title' => 'Form Tambah Data | MS GLOW',
@@ -57,10 +57,35 @@ class Produk extends BaseController
   {
     // validasi input
     if(!$this->validate([
-      'nama_produk' => 'required|is_unique[produk.nama_produk]',
-      'desc_produk' => 'required',
-      'kode_produk' => 'required|is_unique[produk.kode_produk]',
-      'gambar' => 'required'
+      'nama_produk' => [
+        'rules' => 'required|is_unique[produk.nama_produk]',
+        'errors' => [
+          'required' => '{field} produk harus diisi!',
+          'is_unique' => '{field} produk sudah terdaftar!'
+        ]
+        ],
+
+      'desc_produk' => [
+        'rules' => 'required',
+        'errors' => [
+          'required' => '{field} produk harus diisi!'
+        ]
+      ],
+
+      'kode_produk' => [
+        'rules' => 'required|is_unique[produk.kode_produk]',
+        'errors' => [
+          'required' => '{field} produk harus diisi!',
+          'is_unique' => '{field} produk sudah terdaftar!'
+        ]
+        ],
+        
+      'gambar' => [
+        'rules' => 'required',
+        'errors' => [
+          'required' => '{field} produk harus diisi!'
+        ]
+      ]
 
     ])) {
       $validation = \Config\Services::validation();
