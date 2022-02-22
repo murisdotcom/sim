@@ -106,7 +106,15 @@ class Produk extends BaseController
     ]);
 
     session()->setFlashdata('pesan', 'Data berhasil ditambahkan.');
-
+    
+    return redirect()->to('/produk');
+  }
+  
+  public function delete($id)
+  {
+    $this->produkModel->delete($id);
+    
+    session()->setFlashdata('pesan', 'Data berhasil dihapus.');
     return redirect()->to('/produk');
   }
 }

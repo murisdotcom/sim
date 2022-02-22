@@ -34,8 +34,10 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Pages::index');
 
 $routes->get('/produk/create', 'Produk::create');
-// $routes->post('/produk/produk/save', 'Produk::save');
-$routes->get('/produk/(:segment)', 'Produk::detail/$1');
+
+$routes->delete('/produk/(:num)', 'Produk::delete/$1');
+
+$routes->get('/produk/(:any)', 'Produk::detail/$1');
 /*
  * --------------------------------------------------------------------
  * Additional Routing
