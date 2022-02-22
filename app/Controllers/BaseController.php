@@ -49,6 +49,8 @@ class BaseController extends Controller
 
         // E.g.: $this->session = \Config\Services::session();
 
+        session();
+
         $this->nama = 'Muris';
     }
 }

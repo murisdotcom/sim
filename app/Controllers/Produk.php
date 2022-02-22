@@ -42,8 +42,12 @@ class Produk extends BaseController
 
   public function create()
   {
+
+    session();
+
     $data = [
-      'title' => 'Form Tambah Data | MS GLOW'
+      'title' => 'Form Tambah Data | MS GLOW',
+      'validation' => \Config\Services::validation()
     ];
 
     return view('produk/create', $data);
@@ -51,6 +55,21 @@ class Produk extends BaseController
 
   public function save()
   {
+    // validasi input
+    if(!$this->validate([
+      'nama_produk' => 'required|is_unique[produk.nama_produk]',
+      'desc_produk' => 'required',
+      'kode_produk' => 'required|is_unique[produk.kode_produk]',
+      'gambar' => 'required'
+
+    ])) {
+      $validation = \Config\Services::validation();
+
+      return redirect()->to('/produk/create')->withInput()->with('validation', $validation);
+      // $data['validation'] = $validation;
+      // return view('/produk/create', $data);
+    }
+
     $slug = url_title($this->request->getVar('nama_produk'), '-', true);
     $this->produkModel->save([
       'nama_produk' => $this->request->getVar('nama_produk'),

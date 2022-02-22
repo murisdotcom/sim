@@ -5,31 +5,40 @@
   <div class="row">
     <div class="col-8">
       <h2 class="my-3">Form Tambah Data Produk</h2>
-      <?= csrf_field(); ?>
       <form action="/produk/save" method="post">
+        <?= csrf_field(); ?>
         <div class="form-group row mb-3">
           <label for="nama_produk" class="col-sm-2 col-form-label">Nama Produk</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="nama_produk" name="nama_produk" autofocus>
+            <input type="text" class="form-control <?= ($validation->hasError('nama_produk')) ?'is-invalid':'';?>"
+              id="nama_produk" name="nama_produk" autofocus>
+            <div class="invalid-feedback"><?= $validation->getError('nama_produk'); ?></div>
           </div>
         </div>
         <div class="form-group row mb-3">
           <label for="desc_produk" class="col-sm-2 col-form-label">Kegunaan</label>
           <div class="col-sm-10">
             <!-- <input type="text" class="form-control" id="desc_produk"> -->
-            <textarea class="form-control" id="desc_produk" name="desc_produk"></textarea>
+            <textarea class="form-control <?= ($validation->hasError('desc_produk')) ?'is-invalid':'';?>"
+              id="desc_produk" name="desc_produk"></textarea>
+            <div class="invalid-feedback"><?= $validation->getError('desc_produk'); ?>
+            </div>
           </div>
         </div>
         <div class="form-group row mb-3">
           <label for="kode_produk" class="col-sm-2 col-form-label">Kode Produk</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="kode_produk" name="kode_produk">
+            <input type="text" class="form-control <?= ($validation->hasError('kode_produk')) ?'is-invalid':'';?>"
+              id="kode_produk" name="kode_produk">
+            <div class="invalid-feedback"><?= $validation->getError('kode_produk'); ?></div>
           </div>
         </div>
         <div class="form-group row mb-3">
           <label for="gambar" class="col-sm-2 col-form-label">Gambar</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="gambar" name="gambar">
+            <input type="text" class="form-control <?= ($validation->hasError('gambar')) ?'is-invalid':'';?>"
+              id="gambar" name="gambar">
+            <div class="invalid-feedback"><?= $validation->getError('gambar'); ?></div>
           </div>
         </div>
         <button type="submit" class="btn btn-primary">Tambah Data</button>
