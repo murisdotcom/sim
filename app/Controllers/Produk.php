@@ -60,30 +60,31 @@ class Produk extends BaseController
       'nama_produk' => [
         'rules' => 'required|is_unique[produk.nama_produk]',
         'errors' => [
-          'required' => '{field} produk harus diisi!',
-          'is_unique' => '{field} produk sudah terdaftar!'
+          'required' => 'Nama produk harus diisi!',
+          'is_unique' => 'Nama produk sudah terdaftar!'
         ]
         ],
 
       'desc_produk' => [
         'rules' => 'required',
         'errors' => [
-          'required' => '{field} produk harus diisi!'
+          'required' => 'Kegunaan produk harus diisi!'
         ]
       ],
 
       'kode_produk' => [
         'rules' => 'required|is_unique[produk.kode_produk]',
         'errors' => [
-          'required' => '{field} produk harus diisi!',
-          'is_unique' => '{field} produk sudah terdaftar!'
+          'required' => 'Kode produk harus diisi!',
+          'is_unique' => 'Kode produk sudah terdaftar!'
         ]
         ],
-        
+
       'gambar' => [
-        'rules' => 'required',
+        'rules' => 'required|is_unique[produk.gambar]',
         'errors' => [
-          'required' => '{field} produk harus diisi!'
+          'required' => 'Gambar produk harus diisi!',
+          'is_unique' => 'Gambar tidak boleh sama!'
         ]
       ]
 
