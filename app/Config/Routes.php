@@ -34,6 +34,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Pages::index');
 
 $routes->get('/produk/create', 'Produk::create');
+// $routes->post('/produk/produk/save', 'Produk::save');
 $routes->get('/produk/(:segment)', 'Produk::detail/$1');
 /*
  * --------------------------------------------------------------------

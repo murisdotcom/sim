@@ -55,9 +55,9 @@ class Produk extends BaseController
     $this->produkModel->save([
       'nama_produk' => $this->request->getVar('nama_produk'),
       'slug' => $slug,
-      'desc_produk' => $this->request->getVar('nama_produk'),
-      'kode_produk' => $this->request->getVar('nama_produk'),
-      'gambar' => $this->request->getVar('nama_produk')
+      'desc_produk' => $this->request->getVar('desc_produk'),
+      'kode_produk' => $this->request->getVar('kode_produk'),
+      'gambar' => $this->request->getVar('gambar')
     ]);
 
     session()->setFlashdata('pesan', 'Data berhasil ditambahkan.');
