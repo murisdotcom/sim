@@ -16,7 +16,7 @@
               <p class="card-text" style="text-align:justify"><?= $produk['desc_produk']; ?></p>
               <p class="card-text"><small class="text-muted">BPOM: <?= $produk['kode_produk']; ?></small></p>
 
-              <a href="" class="btn btn-warning">Edit</a>
+              <a href="/produk/edit/<?= $produk['slug']; ?>" class="btn btn-warning">Edit</a>
 
               <form action="/produk/<?= $produk['id']; ?>" method="post" class="d-inline">
               <?= csrf_field(); ?>
