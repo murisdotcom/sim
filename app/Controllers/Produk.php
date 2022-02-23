@@ -81,20 +81,37 @@ class Produk extends BaseController
         ],
 
       'gambar' => [
-        'rules' => 'required|is_unique[produk.gambar]',
+        'rules' => 'uploaded[gambar]|max_size[gambar,1024]|is_image[gambar]|mime_in[gambar,image/jpg,image/jpeg,image/png]|is_unique[produk.gambar]',
         'errors' => [
-          'required' => 'Gambar produk harus diisi!',
+          'uploaded' => 'Pilih gambar terlebih dahulu!',
+          'max_size' => 'Ukuran gambar terlalu besar!',
+          'is_image' => 'Yang anda pilih bukan gambar!',
+          'mime_in' => 'Yang anda pilih bukan gambar!',
           'is_unique' => 'Gambar tidak boleh sama!'
         ]
-      ]
+        ]
 
     ])) {
-      $validation = \Config\Services::validation();
+      // $validation = \Config\Services::validation();
 
-      return redirect()->to('/produk/create')->withInput()->with('validation', $validation);
+      return redirect()->to('/produk/create')->withInput();
+      // return redirect()->to('/produk/create')->withInput()->with('validation', $validation);
       // $data['validation'] = $validation;
       // return view('/produk/create', $data);
     }
+
+    // ambil gambar
+    $fileGambar = $this->request->getFile('gambar');
+
+    // generate nama gambar random
+    $namaGambar = $fileGambar->getRandomName();
+
+    // pindahkan file ke folder public/img
+    $fileGambar->move('img', $namaGambar);
+
+    // ambil nama file gambat
+    // $namaGambar = $fileGambar->getName();
+
 
     $slug = url_title($this->request->getVar('nama_produk'), '-', true);
     $this->produkModel->save([
@@ -102,7 +119,7 @@ class Produk extends BaseController
       'slug' => $slug,
       'desc_produk' => $this->request->getVar('desc_produk'),
       'kode_produk' => $this->request->getVar('kode_produk'),
-      'gambar' => $this->request->getVar('gambar')
+      'gambar' => $namaGambar
     ]);
 
     session()->setFlashdata('pesan', 'Data berhasil ditambahkan.');
