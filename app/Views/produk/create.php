@@ -37,15 +37,18 @@
         </div>
         <div class="form-group row mb-3">
           <label for="gambar" class="col-sm-2 col-form-label">Gambar</label>
-          <div class="col-sm-10">
+          <div class="col-sm-2">
+            <img src="/img/default.png" class="img-thumbnail img-preview">
+          </div>
+          <div class="col-sm-8">
 
             <!-- <input type="text" class="form-control <?= ($validation->hasError('gambar')) ?'is-invalid':'';?>" id="gambar"
           name="gambar" value="<?= old('gambar'); ?>"> -->
 
             <div class="input-group mb-3">
-              <input type="file" class="form-control <?= ($validation->hasError('gambar')) ?'is-invalid':'';?>" id="gambar" name="gambar">
+              <input type="file" class="form-control <?= ($validation->hasError('gambar')) ?'is-invalid':'';?>" id="gambar" name="gambar" onchange="previewImg()">
               <div class="invalid-feedback"><?= $validation->getError('gambar'); ?></div>
-              <!-- <label class="input-group-text" for="gambar">Upload</label> -->
+              <!-- <label class="input-group-text" for="gambar">Pilih Gambar</label> -->
             </div>
 
             

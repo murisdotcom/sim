@@ -81,9 +81,9 @@ class Produk extends BaseController
         ],
 
       'gambar' => [
-        'rules' => 'uploaded[gambar]|max_size[gambar,1024]|is_image[gambar]|mime_in[gambar,image/jpg,image/jpeg,image/png]|is_unique[produk.gambar]',
+        'rules' => 'max_size[gambar,1024]|is_image[gambar]|mime_in[gambar,image/jpg,image/jpeg,image/png]|is_unique[produk.gambar]',
         'errors' => [
-          'uploaded' => 'Pilih gambar terlebih dahulu!',
+          // 'uploaded' => 'Pilih gambar terlebih dahulu!',
           'max_size' => 'Ukuran gambar terlalu besar!',
           'is_image' => 'Yang anda pilih bukan gambar!',
           'mime_in' => 'Yang anda pilih bukan gambar!',
@@ -103,14 +103,20 @@ class Produk extends BaseController
     // ambil gambar
     $fileGambar = $this->request->getFile('gambar');
 
-    // generate nama gambar random
-    $namaGambar = $fileGambar->getRandomName();
-
-    // pindahkan file ke folder public/img
-    $fileGambar->move('img', $namaGambar);
-
-    // ambil nama file gambat
-    // $namaGambar = $fileGambar->getName();
+    // apakah tidak ada gambar yang di upload
+    if($fileGambar->getError()==4){
+      $namaGambar = 'default.png';
+    }else {
+      
+      // generate nama gambar random
+      $namaGambar = $fileGambar->getRandomName();
+  
+      // pindahkan file ke folder public/img
+      $fileGambar->move('img', $namaGambar);
+  
+      // ambil nama file gambat
+      // $namaGambar = $fileGambar->getName();
+    }
 
 
     $slug = url_title($this->request->getVar('nama_produk'), '-', true);
