@@ -140,15 +140,15 @@ class Produk extends BaseController
     }
 
     if($produkLama['kode_produk'] == $this->request->getVar('kode_produk')){
-      $rule_namaproduk = 'required';
+      $rule_kodeproduk = 'required';
     }else{
-      $rule_namaproduk = 'required|is_unique[produk.kode_produk]';
+      $rule_kodeproduk = 'required|is_unique[produk.kode_produk]';
     }
 
     if($produkLama['gambar'] == $this->request->getVar('gambar')){
-      $rule_namaproduk = 'required';
+      $rule_gambar = 'required';
     }else{
-      $rule_namaproduk = 'required|is_unique[produk.gambar]';
+      $rule_gambar = 'required|is_unique[produk.gambar]';
     }
 
 
@@ -170,7 +170,7 @@ class Produk extends BaseController
       ],
 
       'kode_produk' => [
-        'rules' => 'required|is_unique[produk.kode_produk]',
+        'rules' => $rule_kodeproduk,
         'errors' => [
           'required' => 'Kode produk harus diisi!',
           'is_unique' => 'Kode produk sudah terdaftar!'
@@ -178,7 +178,7 @@ class Produk extends BaseController
         ],
 
       'gambar' => [
-        'rules' => 'required|is_unique[produk.gambar]',
+        'rules' => $rule_gambar,
         'errors' => [
           'required' => 'Gambar produk harus diisi!',
           'is_unique' => 'Gambar tidak boleh sama!'
@@ -188,7 +188,7 @@ class Produk extends BaseController
     ])) {
       $validation = \Config\Services::validation();
 
-      return redirect()->to('/produk/edit'. $this->request->getVar('slug'))->withInput()->with('validation', $validation);
+      return redirect()->to('/produk/edit/'. $this->request->getVar('slug'))->withInput()->with('validation', $validation);
     }
 
 
