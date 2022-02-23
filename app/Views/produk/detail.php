@@ -15,6 +15,8 @@
               <h5 class="card-title"><?= $produk['nama_produk']; ?></h5>
               <p class="card-text" style="text-align:justify"><?= $produk['desc_produk']; ?></p>
               <p class="card-text"><small class="text-muted">BPOM: <?= $produk['kode_produk']; ?></small></p>
+              
+              <a href="/produk" class="btn btn-primary">Back</a>
 
               <a href="/produk/edit/<?= $produk['slug']; ?>" class="btn btn-warning">Edit</a>
 
@@ -24,8 +26,6 @@
               <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ?');">Delete</button>
             </form>
               
-              <br><br>
-              <a href="/produk">Kembali ke daftar produk</a>
             </div>
           </div>
         </div>
