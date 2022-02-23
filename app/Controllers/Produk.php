@@ -104,7 +104,7 @@ class Produk extends BaseController
     $fileGambar = $this->request->getFile('gambar');
 
     // apakah tidak ada gambar yang di upload
-    if($fileGambar->getError()==4){
+    if($fileGambar->getError() == 4){
       $namaGambar = 'default.png';
     }else {
       
@@ -135,6 +135,17 @@ class Produk extends BaseController
   
   public function delete($id)
   {
+
+    // cari gambar berdasarkan id
+    $produk = $this->produkModel->find($id);
+
+    // cek jika gambarnya default
+    if($produk['gambar'] != 'default.png'){
+
+      // hapus gambar di foldernya bukan hanya di databasenya
+      unlink('img/'. $produk['gambar']);
+    }
+
     $this->produkModel->delete($id);
     
     session()->setFlashdata('pesan', 'Data berhasil dihapus.');
