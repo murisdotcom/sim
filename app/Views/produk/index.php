@@ -25,7 +25,7 @@
           <?php foreach($produk as $p) : ?>
           <tr>
             <th scope="row"><?= $i++; ?></th>
-            <td><img src="/img/<?= $p['gambar']; ?>" alt="" class="sampul"></td>
+            <td><img src="/img/<?= $p['gambar']; ?>" alt="" class="gambar"></td>
             <td><?= $p['nama_produk']; ?></td>
             <td>
               <a href="/produk/<?= $p['slug']; ?>" class="btn btn-success">Detail</a>
