@@ -105,7 +105,7 @@ class Produk extends BaseController
 
     // apakah tidak ada gambar yang di upload
     if($fileGambar->getError() == 4){
-      $namaGambar = 'default.png';
+      $namaGambar = ('default.png');
     }else {
       
       // generate nama gambar random
@@ -212,18 +212,42 @@ class Produk extends BaseController
         ],
 
       'gambar' => [
-        'rules' => $rule_gambar,
+        'rules' => 'max_size[gambar,1024]|is_image[gambar]|mime_in[gambar,image/jpg,image/jpeg,image/png]|is_unique[produk.gambar]',
+
         'errors' => [
-          'required' => 'Gambar produk harus diisi!',
+          // 'uploaded' => 'Pilih gambar terlebih dahulu!',
+          'max_size' => 'Ukuran gambar terlalu besar!',
+          'is_image' => 'Yang anda pilih bukan gambar!',
+          'mime_in' => 'Yang anda pilih bukan gambar!',
           'is_unique' => 'Gambar tidak boleh sama!'
         ]
-      ]
+        ]
 
     ])) {
-      $validation = \Config\Services::validation();
+      // $validation = \Config\Services::validation();
 
-      return redirect()->to('/produk/edit/'. $this->request->getVar('slug'))->withInput()->with('validation', $validation);
+      return redirect()->to('/produk/edit/'. $this->request->getVar('slug'))->withInput();
     }
+
+    $fileGambar = $this->request->getFile('gambar');
+    // cari gambar berdasarkan id
+    $produk = $this->produkModel->find($id);
+
+    // cek gambar apakah tetap gambar lama
+    if($fileGambar->getError() == 4){
+      $namaGambar = $this->request->getVar('gambarLama');
+    }else{
+      // generate nama file random
+      $namaGambar = $fileGambar->getRandomName();
+      // pindahkan gambar
+      $fileGambar->move('img', $namaGambar);
+
+      // cek jika gambarnya default
+    if($produk['gambar'] != 'default.png'){
+      // hapus file lama
+      unlink('img/'. $this->request->getVar('gambarLama'));
+    }
+  }
 
 
     $slug = url_title($this->request->getVar('nama_produk'), '-', true);
@@ -233,7 +257,7 @@ class Produk extends BaseController
       'slug' => $slug,
       'desc_produk' => $this->request->getVar('desc_produk'),
       'kode_produk' => $this->request->getVar('kode_produk'),
-      'gambar' => $this->request->getVar('gambar')
+      'gambar' => $namaGambar
     ]);
 
     session()->setFlashdata('pesan', 'Data berhasil diubah.');

@@ -5,9 +5,10 @@
   <div class="row">
     <div class="col-8">
       <h2 class="my-3">Form Ubah Data Produk</h2>
-      <form action="/produk/update/<?= $produk['id']; ?>" method="post">
+      <form action="/produk/update/<?= $produk['id']; ?>" method="post" enctype="multipart/form-data">
         <?= csrf_field(); ?>
         <input type="hidden" name="slug" value="<?= $produk['slug']; ?>">
+        <input type="hidden" name="gambarLama" value="<?= $produk['gambar']; ?>">
         <div class="form-group row mb-3">
           <label for="nama_produk" class="col-sm-2 col-form-label">Nama Produk</label>
           <div class="col-sm-10">
@@ -41,10 +42,17 @@
         </div>
         <div class="form-group row mb-3">
           <label for="gambar" class="col-sm-2 col-form-label">Gambar</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control <?= ($validation->hasError('gambar')) ?'is-invalid':'';?>"
-              id="gambar" name="gambar" value="<?= (old('gambar')) ? old('gambar') : $produk['gambar']?>">
-            <div class="invalid-feedback"><?= $validation->getError('gambar'); ?></div>
+          <div class="col-sm-2">
+            <img src="/img/<?= $produk['gambar']; ?>" class="img-thumbnail img-preview">
+          </div>
+          <div class="col-sm-8">
+
+            <div class="input-group mb-3">
+              <input type="file" class="form-control <?= ($validation->hasError('gambar')) ?'is-invalid':'';?>"
+              id="gambar" name="gambar" onchange="previewImg()">
+              <div class="invalid-feedback"><?= $validation->getError('gambar'); ?></div>
+            </div>
+
           </div>
         </div>
 

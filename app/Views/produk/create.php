@@ -46,12 +46,13 @@
           name="gambar" value="<?= old('gambar'); ?>"> -->
 
             <div class="input-group mb-3">
-              <input type="file" class="form-control <?= ($validation->hasError('gambar')) ?'is-invalid':'';?>" id="gambar" name="gambar" onchange="previewImg()">
+              <input type="file" class="form-control <?= ($validation->hasError('gambar')) ?'is-invalid':'';?>"
+                id="gambar" name="gambar" onchange="previewImg()">
               <div class="invalid-feedback"><?= $validation->getError('gambar'); ?></div>
               <!-- <label class="input-group-text" for="gambar">Pilih Gambar</label> -->
             </div>
 
-            
+
           </div>
         </div>
         <a href="/produk" class="btn btn-danger">Kembali</a>
